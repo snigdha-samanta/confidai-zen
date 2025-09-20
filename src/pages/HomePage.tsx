@@ -56,7 +56,7 @@ export const HomePage = ({ user, isShieldMode, onAuthClick }: HomePageProps) => 
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               {user ? (
-                <Link to="/dashboard" className="px-6 py-3 primary-gradient text-white rounded-md hover:shadow-glow transition-all font-medium inline-flex items-center">
+                <Link to="/dashboard" className="px-6 py-3 mt-20 primary-gradient text-white rounded-md hover:shadow-glow transition-all font-medium inline-flex items-center">
                   Go to Dashboard
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
