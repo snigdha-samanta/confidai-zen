@@ -1,8 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { 
   MessageCircle, 
   X, 
@@ -125,52 +121,49 @@ export const FloatingChatbot = ({ user, isShieldMode }: FloatingChatbotProps) =>
 
   if (!isOpen) {
     return (
-      <Button
+      <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full primary-gradient hover:shadow-glow float-animation transition-smooth shadow-strong z-50"
-        size="lg"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full primary-gradient hover:shadow-glow float-animation transition-smooth shadow-strong z-50 flex items-center justify-center"
       >
         <MessageCircle className="w-6 h-6 text-white" />
-      </Button>
+      </button>
     );
   }
 
   return (
-    <Card className={`
-      fixed bottom-6 right-6 w-96 transition-all duration-300 z-50 shadow-strong glass
+    <div className={`
+      fixed bottom-6 right-6 w-96 transition-all duration-300 z-50 shadow-strong glass rounded-lg border
       ${isMinimized ? 'h-16' : 'h-[500px]'}
     `}>
-      <CardHeader className="flex flex-row items-center justify-between p-4 border-b">
-        <CardTitle className="text-lg flex items-center space-x-2">
+      <div className="flex flex-row items-center justify-between p-4 border-b">
+        <div className="text-lg flex items-center space-x-2">
           <div className="w-8 h-8 primary-gradient rounded-full flex items-center justify-center">
             <Bot className="w-4 h-4 text-white" />
           </div>
-          <span>
+          <span className="font-semibold">
             {isShieldMode ? 'Assistant' : 'Wellness Companion'}
           </span>
           {!user && <span className="text-xs text-muted-foreground">(Guest)</span>}
-        </CardTitle>
+        </div>
         <div className="flex items-center space-x-1">
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
+            className="p-1 hover:bg-accent rounded-md transition-colors"
             onClick={() => setIsMinimized(!isMinimized)}
           >
             {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
+          </button>
+          <button
+            className="p-1 hover:bg-accent rounded-md transition-colors"
             onClick={() => setIsOpen(false)}
           >
             <X className="w-4 h-4" />
-          </Button>
+          </button>
         </div>
-      </CardHeader>
+      </div>
 
       {!isMinimized && (
-        <CardContent className="flex flex-col h-[440px] p-0">
-          <ScrollArea className="flex-1 p-4">
+        <div className="flex flex-col h-[440px]">
+          <div className="flex-1 p-4 overflow-y-auto">
             <div className="space-y-4">
               {messages.map((msg) => (
                 <div
@@ -206,39 +199,36 @@ export const FloatingChatbot = ({ user, isShieldMode }: FloatingChatbotProps) =>
               ))}
             </div>
             <div ref={messagesEndRef} />
-          </ScrollArea>
+          </div>
 
           <div className="p-4 border-t bg-background/50">
             <div className="flex items-end space-x-2">
               <div className="flex-1">
-                <Input
+                <input
                   ref={inputRef}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder={`Type your message...`}
-                  className="resize-none transition-smooth focus:shadow-glow"
+                  placeholder="Type your message..."
+                  className="w-full px-3 py-2 border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-none"
                 />
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={handleVoiceInput}
                 className={`
-                  transition-smooth
+                  p-2 hover:bg-accent rounded-md transition-colors
                   ${isListening ? 'bg-destructive text-destructive-foreground animate-pulse' : ''}
                 `}
               >
                 {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
-              </Button>
-              <Button
+              </button>
+              <button
                 onClick={handleSendMessage}
-                size="sm"
-                className="primary-gradient transition-smooth"
                 disabled={!message.trim()}
+                className="px-3 py-2 primary-gradient text-white rounded-md hover:shadow-glow transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-4 h-4" />
-              </Button>
+              </button>
             </div>
             {!user && (
               <p className="text-xs text-muted-foreground mt-2">
@@ -246,8 +236,8 @@ export const FloatingChatbot = ({ user, isShieldMode }: FloatingChatbotProps) =>
               </p>
             )}
           </div>
-        </CardContent>
+        </div>
       )}
-    </Card>
+    </div>
   );
 };
