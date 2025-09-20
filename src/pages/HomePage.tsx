@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Heart, 
@@ -26,7 +26,7 @@ export const HomePage = ({ user, isShieldMode, onAuthClick }: HomePageProps) => 
         <div className="absolute inset-0 calm-gradient opacity-50" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            <div className="inline-flex items-center mt-10 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
               <Sparkles className="w-4 h-4 mr-2" />
               {isShieldMode ? 'Productivity Reimagined' : 'AI-Powered Mental Wellness'}
             </div>
@@ -63,14 +63,14 @@ export const HomePage = ({ user, isShieldMode, onAuthClick }: HomePageProps) => 
               ) : (
                 <button 
                   onClick={onAuthClick}
-                  className="px-6 py-3 primary-gradient text-white rounded-md hover:shadow-glow transition-all font-medium inline-flex items-center"
+                  className="px-6 py-3 mt-20 primary-gradient text-white rounded-md hover:shadow-glow transition-all font-medium inline-flex items-center"
                 >
                   Get Started Free
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
               )}
               
-              <Link to="/wellness" className="px-6 py-3 border rounded-md hover:bg-accent transition-colors font-medium">
+              <Link to="/wellness" className="px-6 py-3 mt-20 border rounded-md hover:bg-accent transition-colors font-medium">
                 {isShieldMode ? 'Explore Tools' : 'Explore Wellness Tools'}
               </Link>
             </div>
